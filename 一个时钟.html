@@ -8,8 +8,8 @@
         var m=today.getMinutes();
         var s=today.getSeconds();
         document.getElementById("div2").style.transform="rotate("+6*s+"deg)";
-        document.getElementById("div3").style.transform="rotate("+6*m+"deg)"
-        document.getElementById("div4").style.transform="rotate("+30*h+"deg)"
+        document.getElementById("div3").style.transform="rotate("+6*m+"deg)";
+        document.getElementById("div4").style.transform="rotate("+30*h+"deg)";
         m=check(m);
         s=check(s);
         document.getElementById("div").innerHTML=h+":"+m+":"+s;
@@ -31,6 +31,7 @@
         -moz-border-radius: 50%;
         border-radius: 50%;
         border:2px solid;
+        background-color:transparent;
     }
     .clock-item{
         position: absolute;
@@ -39,48 +40,48 @@
         width:250px;
         height:250px;
     }
-    /*箭头的通用样式*/
-    .clock-item-jiantou{
-        width: 0;
-        height: 0;
-        border-width: 10px 5px;
-        border-style: solid;
-        position: absolute;
-        top:-20px;
-        left:-2.5px
-    }
     /* 时,分，秒针的通用样式*/
     .clock-item-content{
-        width:5px;
         position:absolute;
         bottom:125px;
-        left:122.5px;
+        left:125px;
         right:0;
-        border-width:0 5px 5px 0
+        -webkit-border-radius: 2.5px 2.5px 0 0;
+        -moz-border-radius: 2.5px 2.5px 0 0;
+        border-radius: 2.5px 2.5px 0 0;
     }
     /* 时针的样式*/
     .h{
-        height:90px;
-        background:green;
+        width:5px;
+        height:60px;
+        margin-left: -2.5px;
+        background:black;
     }
-    .h .clock-item-jiantou{
-        border-color: transparent transparent green transparent;
-    }
+
     /* 分针的样式*/
     .m{
-        height:60px;
-        background:pink;
-    }
-    .m .clock-item-jiantou{
-        border-color: transparent transparent pink transparent;
+        width:5px;
+        height:80px;
+        margin-left: -2.5px;
+        background:black;
     }
     /* 秒针的样式*/
     .s{
-        height:40px;
-        background:black;
+        height:90px;
+        width:4px;
+        margin-left:-2px;
+        background:red;
+        z-index:999;
     }
-    .s .clock-item-jiantou{
-        border-color: transparent transparent black transparent;
+    .s::after{
+        position:absolute;
+        bottom:-2.5px;
+        left:-1.5px;
+        width:5px;
+        height:5px;
+        border-radius: 25%;
+        content:'';
+        background:red;
     }
     /*时钟数字标识*/
     .clock-number{
@@ -107,6 +108,8 @@
 <body onload="Time()">
 <div id="div"></div>
 <div class="clock">
+
+    <!--钟表上的数字-->
     <div class="clock-number"><div class="number">12</div></div>
     <div class="clock-number"><div class="number">1</div></div>
     <div class="clock-number"><div class="number">2</div></div>
@@ -119,23 +122,23 @@
     <div class="clock-number"><div class="number">9</div></div>
     <div class="clock-number"><div class="number">10</div></div>
     <div class="clock-number"><div class="number">11</div></div>
+
+    <!--钟表上的时针，分针，秒针-->
     <div id="div2" class="clock-item">
-        <div class="clock-item-content h">
-            <div class="clock-item-jiantou"></div>
+        <div class="clock-item-content s">
         </div>
     </div>
     <div id="div3" class="clock-item">
         <div class="clock-item-content m">
-            <div class="clock-item-jiantou"></div>
         </div>
     </div>
     <div id="div4" class="clock-item">
-        <div class="clock-item-content s">
-            <div class="clock-item-jiantou"></div>
+        <div class="clock-item-content h">
         </div>
     </div>
 </div>
 <script>
+    /*设置钟表上的数字的位置和视觉效果*/
     var arr=document.getElementsByClassName('clock-number');
     var arr1=document.getElementsByClassName('number');
     for (var i=0;i<arr.length;i++){
