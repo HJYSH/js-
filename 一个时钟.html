@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+    function Time() {
+        var today=new Date();
+        var h=today.getHours();
+        var m=today.getMinutes();
+        var s=today.getSeconds();
+        document.getElementById("div2").style.transform="rotate("+6*s+"deg)";
+        document.getElementById("div3").style.transform="rotate("+6*m+"deg)"
+        document.getElementById("div4").style.transform="rotate("+30*h+"deg)"
+        m=check(m);
+        s=check(s);
+        document.getElementById("div").innerHTML=h+":"+m+":"+s;
+        y=setTimeout('Time()',500)
+    }
+    function check(e) {
+        if(e<10) {
+            e="0"+e;
+        }
+        return e
+    }
+</script>
+<style>
+    .clock{
+        position: relative;
+        width:250px;
+        height:250px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        border:2px solid;
+    }
+    .clock-item{
+        position: absolute;
+        top:0;
+        left:0;
+        width:250px;
+        height:250px;
+    }
+    /*箭头的通用样式*/
+    .clock-item-jiantou{
+        width: 0;
+        height: 0;
+        border-width: 10px 5px;
+        border-style: solid;
+        position: absolute;
+        top:-20px;
+        left:-2.5px
+    }
+    /* 时,分，秒针的通用样式*/
+    .clock-item-content{
+        width:5px;
+        position:absolute;
+        bottom:125px;
+        left:122.5px;
+        right:0;
+        border-width:0 5px 5px 0
+    }
+    /* 时针的样式*/
+    .h{
+        height:90px;
+        background:green;
+    }
+    .h .clock-item-jiantou{
+        border-color: transparent transparent green transparent;
+    }
+    /* 分针的样式*/
+    .m{
+        height:60px;
+        background:pink;
+    }
+    .m .clock-item-jiantou{
+        border-color: transparent transparent pink transparent;
+    }
+    /* 秒针的样式*/
+    .s{
+        height:40px;
+        background:black;
+    }
+    .s .clock-item-jiantou{
+        border-color: transparent transparent black transparent;
+    }
+    /*时钟数字标识*/
+    .clock-number{
+        position: absolute;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        top:0;
+        left:0;
+        width:250px;
+        height:250px;
+    }
+    .number{
+        position: absolute;
+        width:20px;
+        height:20px;
+        left:125px;
+        top:0;
+        text-align: center;
+        margin-left:-10px;
+    }
+</style>
+</head>
+<body onload="Time()">
+<div id="div"></div>
+<div class="clock">
+    <div class="clock-number"><div class="number">12</div></div>
+    <div class="clock-number"><div class="number">1</div></div>
+    <div class="clock-number"><div class="number">2</div></div>
+    <div class="clock-number"><div class="number">3</div></div>
+    <div class="clock-number"><div class="number">4</div></div>
+    <div class="clock-number"><div class="number">5</div></div>
+    <div class="clock-number"><div class="number">6</div></div>
+    <div class="clock-number"><div class="number">7</div></div>
+    <div class="clock-number"><div class="number">8</div></div>
+    <div class="clock-number"><div class="number">9</div></div>
+    <div class="clock-number"><div class="number">10</div></div>
+    <div class="clock-number"><div class="number">11</div></div>
+    <div id="div2" class="clock-item">
+        <div class="clock-item-content h">
+            <div class="clock-item-jiantou"></div>
+        </div>
+    </div>
+    <div id="div3" class="clock-item">
+        <div class="clock-item-content m">
+            <div class="clock-item-jiantou"></div>
+        </div>
+    </div>
+    <div id="div4" class="clock-item">
+        <div class="clock-item-content s">
+            <div class="clock-item-jiantou"></div>
+        </div>
+    </div>
+</div>
+<script>
+    var arr=document.getElementsByClassName('clock-number');
+    var arr1=document.getElementsByClassName('number');
+    for (var i=0;i<arr.length;i++){
+        console.log(i)
+        arr[i].style.transform = "rotate("+i*30+"deg)"
+        arr1[i].style.transform = "rotate("+i*-30+"deg)"
+    }
+</script>
+</body>
+</html>
