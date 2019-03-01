@@ -6,10 +6,11 @@
         var today=new Date();
         var h=today.getHours();
         var m=today.getMinutes();
+        var h1=h+m/60;
         var s=today.getSeconds();
         document.getElementById("div2").style.transform="rotate("+6*s+"deg)";
         document.getElementById("div3").style.transform="rotate("+6*m+"deg)";
-        document.getElementById("div4").style.transform="rotate("+30*h+"deg)";
+        document.getElementById("div4").style.transform="rotate("+30*h1+"deg)";
         m=check(m);
         s=check(s);
         document.getElementById("div").innerHTML=h+":"+m+":"+s;
